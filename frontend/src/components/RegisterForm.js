@@ -18,6 +18,12 @@ const RegisterForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Only allow numbers in the phone number field
+    if (name === "phoneNumber" && isNaN(value)) {
+      return;
+    }
+
     setFormData({
       ...formData,
       [name]: value,
