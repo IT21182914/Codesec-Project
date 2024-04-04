@@ -1,10 +1,24 @@
 const express = require("express");
 const app = express();
-const PORT = 8080;
+const mongoose = require("mongoose");
+require("dotenv").config();
 
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {});
+// Routes
+const authRoutes = require("./routes/authRoutes");
+app.use("/api/auth", authRoutes);
 
-app.listen(PORT, () => console.log("\nServer running on port " + PORT));
+// MongoDB connection
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB successfully connected 🍃"))
+  .catch((err) => console.error("Failed to connect to MongoDB", err));
+
+// Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`\nServer is running on port ${PORT} 🔥`));
