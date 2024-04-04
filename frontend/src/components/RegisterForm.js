@@ -1,5 +1,3 @@
-// RegisterForm.js
-
 import React, { useState } from "react";
 import "./RegisterForm.css";
 
@@ -41,10 +39,11 @@ const RegisterForm = () => {
 
     if (name === "phoneNumber") {
       const re = /^[0-9\b]+$/;
-      if (value.length > 10 || !re.test(value)) {
+      if (value.length !== 10 || !re.test(value)) {
         setErrors({
           ...errors,
-          phoneError: "Phone number must be numeric and contain 10 digits",
+          phoneError:
+            "Phone number must be numeric and contain exactly 10 digits",
         });
       } else {
         setErrors({
@@ -67,6 +66,14 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      setErrors({
+        ...errors,
+        passwordError: "Passwords do not match",
+      });
+      return;
+    }
+
     // Add your registration logic here
     console.log(formData);
   };
@@ -89,6 +96,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.firstName ? "active" : ""}
               required
             />
             <label htmlFor="firstName" onClick={handleLabelClick}>
@@ -106,6 +114,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.lastName ? "active" : ""}
               required
             />
             <label htmlFor="lastName" onClick={handleLabelClick}>
@@ -123,6 +132,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.email ? "active" : ""}
               required
             />
             <label htmlFor="email" onClick={handleLabelClick}>
@@ -140,11 +150,15 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.phoneNumber ? "active" : ""}
               required
             />
             <label htmlFor="phoneNumber" onClick={handleLabelClick}>
               Phone Number
             </label>
+            {errors.phoneError && (
+              <span className="error">{errors.phoneError}</span>
+            )}
           </div>
         </div>
         <div className="row">
@@ -157,6 +171,7 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.password ? "active" : ""}
               required
             />
             <label htmlFor="password" onClick={handleLabelClick}>
@@ -177,11 +192,16 @@ const RegisterForm = () => {
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={formData.confirmPassword ? "active" : ""}
               required
             />
             <label htmlFor="confirmPassword" onClick={handleLabelClick}>
               Confirm Password
             </label>
+            {formData.confirmPassword &&
+              formData.password !== formData.confirmPassword && (
+                <span className="error">Passwords do not match</span>
+              )}
           </div>
         </div>
         <button type="submit" className="submit-button">
