@@ -43,12 +43,15 @@ label {
 }
 
 button.submit-button {
-    width: 100%;
+    width: 35%;
     padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
+    margin: 20px auto;
+    /* Center the button horizontally */
+    display: block;
+    /* Ensures the button takes up the specified width */
     background-color: #ff5894;
     color: white;
 }
