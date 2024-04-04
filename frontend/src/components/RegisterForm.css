@@ -1,0 +1,71 @@
+/* RegisterForm.css */
+
+.register-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.column {
+    flex: 1;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+input:focus+label,
+input:not(:placeholder-shown)+label {
+    top: -12px;
+    font-size: 12px;
+    color: #000000;
+}
+
+label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: all 0.3s ease-in-out;
+    color: #777;
+}
+
+.gap {
+    width: 20px;
+    /* Adjust the width as needed */
+}
+
+.empty-space {
+    width: 20px;
+    /* Adjust the width of the empty space as needed */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
