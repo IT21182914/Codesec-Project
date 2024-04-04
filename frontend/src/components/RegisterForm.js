@@ -1,5 +1,3 @@
-// RegisterForm.js
-
 import React, { useState } from "react";
 import "./RegisterForm.css";
 
@@ -55,18 +53,6 @@ const RegisterForm = () => {
     }
   };
 
-  const handleFocus = (e) => {
-    e.target.placeholder = "";
-  };
-
-  const handleBlur = (e) => {
-    // if (!e.target.value.trim()) {
-    //   e.target.placeholder = e.target.name
-    //     .replace(/([A-Z])/g, " $1")
-    //     .toLowerCase();
-    // }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your registration logic here
@@ -83,22 +69,18 @@ const RegisterForm = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>First Name</label>
           </div>
           <div className="gap" />
-          <div className="empty-space" /> {/* Empty space */}
+          <div className="empty-space" />
           <div className="column">
             <input
               type="text"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>Last Name</label>
@@ -111,8 +93,6 @@ const RegisterForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>Email</label>
@@ -125,8 +105,6 @@ const RegisterForm = () => {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>Phone Number</label>
@@ -139,8 +117,6 @@ const RegisterForm = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>Password</label>
@@ -156,8 +132,6 @@ const RegisterForm = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
               required
             />
             <label>Confirm Password</label>
