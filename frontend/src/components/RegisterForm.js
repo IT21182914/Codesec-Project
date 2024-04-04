@@ -71,6 +71,11 @@ const RegisterForm = () => {
     console.log(formData);
   };
 
+  const handleLabelClick = (e) => {
+    const inputId = e.target.htmlFor;
+    document.getElementById(inputId).focus();
+  };
+
   return (
     <div className="register-form">
       <form onSubmit={handleSubmit}>
@@ -78,6 +83,7 @@ const RegisterForm = () => {
           <div className="column">
             <input
               type="text"
+              id="firstName"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
@@ -85,13 +91,16 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>First Name</label>
+            <label htmlFor="firstName" onClick={handleLabelClick}>
+              First Name
+            </label>
           </div>
           <div className="gap" />
           <div className="empty-space" />
           <div className="column">
             <input
               type="text"
+              id="lastName"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
@@ -99,13 +108,16 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>Last Name</label>
+            <label htmlFor="lastName" onClick={handleLabelClick}>
+              Last Name
+            </label>
           </div>
         </div>
         <div className="row">
           <div className="column">
             <input
               type="email"
+              id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -113,13 +125,16 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>Email</label>
+            <label htmlFor="email" onClick={handleLabelClick}>
+              Email
+            </label>
           </div>
           <div className="gap" />
           <div className="empty-space" />
           <div className="column">
             <input
               type="tel"
+              id="phoneNumber"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
@@ -127,13 +142,16 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>Phone Number</label>
+            <label htmlFor="phoneNumber" onClick={handleLabelClick}>
+              Phone Number
+            </label>
           </div>
         </div>
         <div className="row">
           <div className="column">
             <input
               type="password"
+              id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
@@ -141,7 +159,9 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>Password</label>
+            <label htmlFor="password" onClick={handleLabelClick}>
+              Password
+            </label>
             {errors.passwordError && (
               <span className="error">{errors.passwordError}</span>
             )}
@@ -151,6 +171,7 @@ const RegisterForm = () => {
           <div className="column">
             <input
               type="password"
+              id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
@@ -158,7 +179,9 @@ const RegisterForm = () => {
               onBlur={handleBlur}
               required
             />
-            <label>Confirm Password</label>
+            <label htmlFor="confirmPassword" onClick={handleLabelClick}>
+              Confirm Password
+            </label>
           </div>
         </div>
         <button type="submit" className="submit-button">
