@@ -18,6 +18,12 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "User already registered" });
     }
 
+    // Validate phone number format
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phone.match(phoneRegex)) {
+      return res.status(400).json({ message: "Invalid phone number format" });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       firstName,

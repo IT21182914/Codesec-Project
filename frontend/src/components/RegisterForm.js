@@ -7,7 +7,7 @@ const RegisterForm = () => {
     firstName: "",
     lastName: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     password: "",
     confirmPassword: "",
   });
@@ -23,7 +23,7 @@ const RegisterForm = () => {
     const { name, value } = e.target;
 
     // Only allow numbers in the phone number field
-    if (name === "phoneNumber" && isNaN(value)) {
+    if (name === "phone" && isNaN(value)) {
       return;
     }
 
@@ -46,7 +46,7 @@ const RegisterForm = () => {
       }
     }
 
-    if (name === "phoneNumber") {
+    if (name === "phone") {
       const re = /^[0-9\b]+$/;
       if (value.length !== 10 || !re.test(value)) {
         setErrors({
@@ -76,7 +76,7 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.phoneNumber.length !== 10) {
+      if (formData.phone.length !== 10) {
         setErrors({
           ...errors,
           phoneError: "Phone number must contain exactly 10 digits",
@@ -187,17 +187,17 @@ const RegisterForm = () => {
             <div className="column">
               <input
                 type="tel"
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
+                id="phone"
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className={formData.phoneNumber ? "active" : ""}
+                className={formData.phone ? "active" : ""}
                 required // Add the required attribute
               />
 
-              <label htmlFor="phoneNumber" onClick={handleLabelClick}>
+              <label htmlFor="phone" onClick={handleLabelClick}>
                 Phone Number
               </label>
               {errors.phoneError && (
