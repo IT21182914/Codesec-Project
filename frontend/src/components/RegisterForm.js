@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate hook
 import "./RegisterForm.css";
 
 const RegisterForm = () => {
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -92,6 +94,9 @@ const RegisterForm = () => {
       );
       console.log(response.data);
       setSuccessMessage("Registration successful!");
+
+      // Navigate to the home page upon successful registration
+      navigate("/");
     } catch (error) {
       console.error(error);
       if (error.response) {

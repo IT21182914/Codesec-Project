@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -14,6 +14,7 @@ const LoginForm = () => {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,6 +57,7 @@ const LoginForm = () => {
       ); // Make a POST request to login endpoint
       console.log(response.data); // Log the response data
       setSuccessMessage("Login successful!"); // Set success message
+      navigate("/recipe"); // Navigate to Recipe component upon successful login
     } catch (error) {
       console.error(error);
     }
