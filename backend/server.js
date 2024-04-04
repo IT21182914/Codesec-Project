@@ -21,3 +21,16 @@ mongoose
 // Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`\nServer is running on port ${PORT} 🔥`));
+
+/*
+.env
+
+PORT=8080
+MONGO_URI=mongodb+srv://dilanshanuka:1234@codesec.arx2k3e.mongodb.net/codesec?retryWrites=true&w=majority&appName=codesec
+JWT_SECRET=myKey
+JWT_EXPIRES_IN=30m
+REFRESH_TOKEN_SECRET=myRefreshKey
+REFRESH_TOKEN_EXPIRES_IN=7d
+
+
+*/
