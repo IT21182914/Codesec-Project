@@ -1,0 +1,65 @@
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.column {
+    flex: 1;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+label {
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    transition: all 0.3s ease-in-out;
+    color: #777;
+    font-size: 12px;
+}
+
+.active label {
+    top: -12px;
+    font-size: 12px;
+}
+
+button.submit-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: #ff5894;
+    color: white;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link span {
+    color: #ff5894;
+    cursor: pointer;
+}

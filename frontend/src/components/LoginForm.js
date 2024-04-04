@@ -1,47 +1,109 @@
-// src/components/LoginForm.js
-
 import React, { useState } from "react";
-import axios from "axios";
+import "./LoginForm.css";
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("/api/auth/login", {
-        username,
-        password,
-      });
-      // Handle successful login (e.g., store token in local storage, redirect to dashboard)
-    } catch (error) {
-      console.error(error);
-      // Handle login error (e.g., display error message)
+  const [errors, setErrors] = useState({
+    passwordError: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    if (name === "password") {
+      if (value.length < 6) {
+        setErrors({
+          ...errors,
+          passwordError: "Password must have at least 6 characters",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          passwordError: "",
+        });
+      }
     }
   };
 
+  const handleFocus = (e) => {
+    e.target.parentElement.classList.add("active");
+  };
+
+  const handleBlur = (e) => {
+    if (!e.target.value.trim()) {
+      e.target.parentElement.classList.remove("active");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your login logic here
+    console.log(formData);
+  };
+
+  const handleLabelClick = (e) => {
+    const inputId = e.target.htmlFor;
+    document.getElementById(inputId).focus();
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button
-        style={{ backgroundColor: "#F56A9C", color: "white" }}
-        type="submit"
-      >
-        Login
-      </button>
-    </form>
+    <div className="login-form">
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="column">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={formData.email ? "active" : ""}
+              required
+            />
+            <label htmlFor="email" onClick={handleLabelClick}>
+              Email
+            </label>
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={formData.password ? "active" : ""}
+              required
+            />
+            <label htmlFor="password" onClick={handleLabelClick}>
+              Password
+            </label>
+            {errors.passwordError && (
+              <span className="error">{errors.passwordError}</span>
+            )}
+          </div>
+        </div>
+        <button type="submit" className="submit-button">
+          Login
+        </button>
+      </form>
+      <p className="register-link">
+        Don't have an account? <span>Register</span>
+      </p>
+    </div>
   );
 };
 
