@@ -35,10 +35,12 @@ input:not(:placeholder-shown)+label {
 
 label {
     position: absolute;
-    top: 10px;
+    top: 22px;
     left: 10px;
     transition: all 0.3s ease-in-out;
     color: #777;
+    font-size: 12px;
+    
 }
 
 .gap {
