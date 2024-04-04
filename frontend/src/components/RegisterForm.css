@@ -1,8 +1,33 @@
+.register-form-container {
+    background-color: #fff1f6;
+    /* Background color outside the form */
+    padding: 20px;
+    
+}
+/* App.css or any global CSS file */
+body {
+    background-color: #fff1f6;
+    /* Set background color for the entire body */
+    margin: 0;
+    /* Remove default body margin */
+    padding: 0;
+    /* Remove default body padding */
+}
 .register-form {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    background-color: #ffffff;
+    /* Background color for the form */
     padding: 20px;
+    border-radius: 10px;
+    /* Rounded corners for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Box shadow for a slight elevation effect */
+}
+
+.register-form {
+    width: 100%;
 }
 
 .row {
