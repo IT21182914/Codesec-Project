@@ -55,54 +55,56 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-form">
-      <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="column">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              className={formData.email ? "active" : ""}
-              required
-            />
-            <label htmlFor="email" onClick={handleLabelClick}>
-              Email
-            </label>
+    <div className="login-form-container">
+      <div className="login-form">
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="column">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                className={formData.email ? "active" : ""}
+                required
+              />
+              <label htmlFor="email" onClick={handleLabelClick}>
+                Email
+              </label>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="column">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              className={formData.password ? "active" : ""}
-              required
-            />
-            <label htmlFor="password" onClick={handleLabelClick}>
-              Password
-            </label>
-            {errors.passwordError && (
-              <span className="error">{errors.passwordError}</span>
-            )}
+          <div className="row">
+            <div className="column">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                className={formData.password ? "active" : ""}
+                required
+              />
+              <label htmlFor="password" onClick={handleLabelClick}>
+                Password
+              </label>
+              {errors.passwordError && (
+                <span className="error">{errors.passwordError}</span>
+              )}
+            </div>
           </div>
-        </div>
-        <button type="submit" className="submit-button">
-          SIGN IN
-        </button>
-      </form>
-      <p className="register-link">
-        Don't have an account? <span>Create an account</span>
-      </p>
+          <button type="submit" className="submit-button">
+            SIGN IN
+          </button>
+        </form>
+        <p className="register-link">
+          Don't have an account? <span>Create an account</span>
+        </p>
+      </div>
     </div>
   );
 };
