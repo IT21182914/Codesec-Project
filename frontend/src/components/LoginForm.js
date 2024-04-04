@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
+import { Link } from "react-router-dom";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -114,8 +115,15 @@ const LoginForm = () => {
             SIGN IN
           </button>
         </form>
+
         <p className="register-link">
-          Don't have an account? <span>Create an account</span>
+          Don't have an account?{" "}
+          <Link
+            to="/registration"
+            style={{ textDecoration: "underline", color: "pink" }}
+          >
+            <span style={{ textDecoration: "none" }}>Create an account</span>
+          </Link>
         </p>
       </div>
     </div>

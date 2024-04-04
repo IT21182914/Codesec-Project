@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
+import { Link } from "react-router-dom";
 import "./RegisterForm.css";
 
 const RegisterForm = () => {
@@ -253,7 +254,10 @@ const RegisterForm = () => {
           </button>
         </form>
         <p className="login-link">
-          Already have an account? <span>Login</span>
+          Already have an account?{" "}
+          <Link to="/" style={{ textDecoration: "underline", color: "pink" }}>
+            <span style={{ textDecoration: "none" }}>Login</span>
+          </Link>
         </p>
       </div>
       <br /> <br />
