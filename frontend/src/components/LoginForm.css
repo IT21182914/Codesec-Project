@@ -3,6 +3,12 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #FFF1F6;
+    /* Background color for the form */
+    border-radius: 10px;
+    /* Rounded corners for the form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Box shadow for a slight elevation effect */
 }
 
 .row {
