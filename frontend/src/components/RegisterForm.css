@@ -1,9 +1,17 @@
 .register-form-container {
-    background-color: #fff1f6;
+    background-color: #FFF8FA;
     /* Background color outside the form */
     padding: 20px;
     
 }
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="tel"],
+.register-form input[type="password"] {
+    width: calc(90% - 10px);
+    /* Set the width to 50% of the parent width with some margin */
+}
+
 /* App.css or any global CSS file */
 body {
     background-color: #fff1f6;
@@ -15,7 +23,8 @@ body {
 }
 .register-form {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
+    /* Adjust the max-width to add space on the right side */
     margin: 0 auto;
     background-color: #ffffff;
     /* Background color for the form */

@@ -1,5 +1,5 @@
 .login-form-container {
-    background-color: #fff1f6;
+    background-color: #FFF8FA;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,4 +74,16 @@ button.submit-button {
 .register-link span {
     color: #ff5894;
     cursor: pointer;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: calc(90% - 1px);
+    /* Adjust the width as needed */
+}
+
+input[type="submit"] {
+    width: 100%;
+    /* Make the submit button full width */
 }
