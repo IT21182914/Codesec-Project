@@ -97,11 +97,11 @@ const LoginForm = () => {
           </div>
         </div>
         <button type="submit" className="submit-button">
-          Login
+          SIGN IN
         </button>
       </form>
       <p className="register-link">
-        Don't have an account? <span>Register</span>
+        Don't have an account? <span>Create an account</span>
       </p>
     </div>
   );
