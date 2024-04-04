@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios for making HTTP requests
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -10,6 +11,8 @@ const LoginForm = () => {
   const [errors, setErrors] = useState({
     passwordError: "",
   });
+
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,10 +46,18 @@ const LoginForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log(formData);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        formData
+      ); // Make a POST request to login endpoint
+      console.log(response.data); // Log the response data
+      setSuccessMessage("Login successful!"); // Set success message
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleLabelClick = (e) => {
@@ -58,6 +69,7 @@ const LoginForm = () => {
     <div className="login-form-container">
       <div className="login-form">
         <h2>Login</h2>
+        {successMessage && <p className="success-message">{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="column">

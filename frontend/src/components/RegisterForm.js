@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios for making HTTP requests
 import "./RegisterForm.css";
 
 const RegisterForm = () => {
@@ -15,6 +16,8 @@ const RegisterForm = () => {
     passwordError: "",
     phoneError: "",
   });
+
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,18 +73,46 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setErrors({
-        ...errors,
-        passwordError: "Passwords do not match",
-      });
-      return;
-    }
+    try {
+      if (formData.phoneNumber.length !== 10) {
+        setErrors({
+          ...errors,
+          phoneError: "Phone number must contain exactly 10 digits",
+        });
+        return; // Exit early if phone number is not valid
+      }
+      // Additional validation logic if needed
 
-    // Add your registration logic here
-    console.log(formData);
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/register",
+        formData
+      );
+      console.log(response.data);
+      setSuccessMessage("Registration successful!");
+    } catch (error) {
+      console.error(error);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        if (error.response.data.errors && error.response.data.errors.phone) {
+          setErrors({
+            ...errors,
+            phoneError: error.response.data.errors.phone.message,
+          });
+        }
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+    }
   };
 
   const handleLabelClick = (e) => {
@@ -96,6 +127,7 @@ const RegisterForm = () => {
       <div className="register-form">
         <br />
         <h2>Register</h2>
+        {successMessage && <p className="success-message">{successMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="column">
@@ -162,8 +194,9 @@ const RegisterForm = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 className={formData.phoneNumber ? "active" : ""}
-                required
+                required // Add the required attribute
               />
+
               <label htmlFor="phoneNumber" onClick={handleLabelClick}>
                 Phone Number
               </label>
