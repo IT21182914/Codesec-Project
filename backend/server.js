@@ -3,14 +3,17 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors"); // Import cors middleware
 require("dotenv").config();
+const authRoutes = require("./routes/authRoutes");
+const recipeRoutes = require("./routes/recipeRoutes");
 
 // Middleware
 app.use(express.json());
 app.use(cors());
 
 // Routes
-const authRoutes = require("./routes/authRoutes");
+
 app.use("/api/auth", authRoutes);
+app.use("/api", recipeRoutes);
 
 // MongoDB connection
 mongoose
