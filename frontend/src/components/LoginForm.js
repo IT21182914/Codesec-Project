@@ -57,7 +57,7 @@ const LoginForm = () => {
       ); // Make a POST request to login endpoint
       console.log(response.data); // Log the response data
       setSuccessMessage("Login successful!"); // Set success message
-      navigate("/recipe"); // Navigate to Recipe component upon successful login
+      navigate("/home"); // Navigate to Recipe component upon successful login
     } catch (error) {
       console.error(error);
     }
