@@ -89,7 +89,7 @@ exports.logout = (req, res, next) => {
   if (!prevToken) {
     return res.status(400).json({ message: "No token provided" });
   }
-  jwt.verify(String(prevToken), process.env.JWT_SECRET_KEY, (err, user) => {
+  jwt.verify(String(prevToken), process.env.JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ message: "Invalid token" });
     }
