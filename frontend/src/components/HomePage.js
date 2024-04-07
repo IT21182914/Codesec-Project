@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
-import { Link } from "react-router-dom";
-import "./styles.css";
+import { Link, useLocation } from "react-router-dom";
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     axios
@@ -45,8 +45,22 @@ const HomePage = () => {
       <div className="header">
         <div className="logo">Cook</div>
         <div className="nav-links">
-          <Link to="/">HOME</Link>
-          <Link to="/favorite">FAVORITE</Link>
+          <Link
+            to="/home"
+            style={{
+              color: location.pathname === "/home" ? "#ff5894" : "black",
+            }}
+          >
+            HOME
+          </Link>
+          <Link
+            to="/favorite"
+            style={{
+              color: location.pathname === "/favorite" ? "#ff5894" : "black",
+            }}
+          >
+            FAVORITE
+          </Link>
         </div>
       </div>
       <div className="categories">
