@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios for making HTTP requests
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import { useDispatch } from "react-redux";
+import { authAction } from "../store";
 import "./LoginForm.css";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,14 +52,26 @@ const LoginForm = () => {
     }
   };
 
+  const sendRequest = async (formData) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        formData
+      );
+      const data = await res.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        formData
-      ); // Make a POST request to login endpoint
-      console.log(response.data); // Log the response data
+      const userData = await sendRequest(formData);
+      dispatch(authAction.login());
+      console.log(userData); // Log the response data
       setSuccessMessage("Login successful!"); // Set success message
       navigate("/home"); // Navigate to Recipe component upon successful login
     } catch (error) {
