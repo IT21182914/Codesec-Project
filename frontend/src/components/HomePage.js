@@ -8,6 +8,7 @@ const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [recipes, setRecipes] = useState([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
@@ -38,6 +39,16 @@ const HomePage = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+  };
+
+  const addToFavorites = (recipe) => {
+    setFavoriteRecipes([...favoriteRecipes, recipe]);
+  };
+
+  const removeFromFavorites = (recipe) => {
+    setFavoriteRecipes(
+      favoriteRecipes.filter((favRecipe) => favRecipe.idMeal !== recipe.idMeal)
+    );
   };
 
   return (
@@ -78,7 +89,15 @@ const HomePage = () => {
       </div>
       <div className="recipes">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.idMeal} recipe={recipe} />
+          <RecipeCard
+            key={recipe.idMeal}
+            recipe={recipe}
+            addToFavorites={addToFavorites}
+            removeFromFavorites={removeFromFavorites}
+            isFavorite={favoriteRecipes.some(
+              (favRecipe) => favRecipe.idMeal === recipe.idMeal
+            )}
+          />
         ))}
       </div>
     </div>

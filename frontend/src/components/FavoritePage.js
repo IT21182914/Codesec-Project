@@ -1,9 +1,10 @@
-// FavoritePage.js
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import RecipeCard from "./RecipeCard";
 
-const FavoritePage = () => {
+const FavoritePage = ({ favoriteRecipes }) => {
   const location = useLocation();
+
   return (
     <div className="container">
       <div className="header">
@@ -28,7 +29,11 @@ const FavoritePage = () => {
         </div>
       </div>
       <h2>Favorite Recipes HERE</h2>
-      {/* Display favorite recipes here */}
+      <div className="recipes">
+        {favoriteRecipes?.map((recipe) => (
+          <RecipeCard key={recipe.idMeal} recipe={recipe} isFavorite={true} />
+        ))}
+      </div>
     </div>
   );
 };
