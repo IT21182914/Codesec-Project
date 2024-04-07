@@ -27,7 +27,7 @@ const FavoritePage = () => {
           </Link>
         </div>
       </div>
-      <h2>Favorite Recipes</h2>
+      <h2>Favorite Recipes HERE</h2>
       {/* Display favorite recipes here */}
     </div>
   );
