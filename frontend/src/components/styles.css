@@ -78,11 +78,11 @@
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    background-color: #ff5894;
+    background-color: #f0f0f0;
     color: #fff;
     cursor: pointer;
 }
 
 .favorite-btn:hover {
-    background-color: #ff3399;
+    background-color: #ffe987;
 }
