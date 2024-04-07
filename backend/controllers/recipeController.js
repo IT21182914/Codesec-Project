@@ -1,3 +1,5 @@
+//recipeController.js
+
 const Recipe = require("../models/recipeModel");
 
 // Function to get all recipes
@@ -34,12 +36,19 @@ const addRecipe = async (req, res) => {
 const addToFavorites = async (req, res) => {
   try {
     const { recipeId } = req.body;
-    // Get user ID from req.user (assuming user is authenticated)
-    const userId = req.user.id;
-    // Add recipe ID to user's favorites list in the database
-    // Example logic: const user = await User.findById(userId);
-    // user.favorites.push(recipeId);
-    // await user.save();
+    const userId = req.user.userId;
+
+    // Find the user by ID and update their favorites list
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $addToSet: { favorites: recipeId } }, // Using $addToSet to avoid duplicates
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
     res.status(200).json({ message: "Recipe added to favorites successfully" });
   } catch (error) {
     console.error("Error adding recipe to favorites:", error);
