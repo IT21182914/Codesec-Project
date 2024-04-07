@@ -81,3 +81,21 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Login failed" });
   }
 };
+
+exports.logout = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  const prevToken = cookies.split("=")[1];
+
+  if (!prevToken) {
+    return res.status(400).json({ message: "No token provided" });
+  }
+  jwt.verify(String(prevToken), process.env.JWT_SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Invalid token" });
+    }
+    res.clearCookie(`${user.id}`);
+    req.cookies[` ${user.id}`] = "";
+
+    return res.status(200).json({ message: "Logged out successfully" });
+  });
+};
