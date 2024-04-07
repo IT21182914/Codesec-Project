@@ -88,7 +88,7 @@ const RegisterForm = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        "https://codesec-project.onrender.com/api/auth/register",
         formData
       );
       console.log(response.data);
