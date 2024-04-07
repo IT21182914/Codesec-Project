@@ -28,7 +28,20 @@ const FavoritePage = ({ favoriteRecipes }) => {
           </Link>
         </div>
       </div>
-      <h2>Favorite Recipes HERE</h2>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "#ff5894",
+          textTransform: "uppercase",
+          letterSpacing: "1px",
+          margin: "20px 0",
+        }}
+      >
+        Favorite Recipes HERE
+      </h2>
+
       <div className="recipes">
         {favoriteRecipes?.map((recipe) => (
           <RecipeCard key={recipe.idMeal} recipe={recipe} isFavorite={true} />
