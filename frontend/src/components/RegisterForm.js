@@ -86,7 +86,6 @@ const RegisterForm = () => {
         });
         return; // Exit early if phone number is not valid
       }
-      // Additional validation logic if needed
 
       const response = await axios.post(
         "http://localhost:8080/api/auth/register",
@@ -101,7 +100,7 @@ const RegisterForm = () => {
       console.error(error);
       if (error.response) {
         // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
+
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
@@ -112,10 +111,8 @@ const RegisterForm = () => {
           });
         }
       } else if (error.request) {
-        // The request was made but no response was received
         console.log(error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.log("Error", error.message);
       }
     }
@@ -200,7 +197,7 @@ const RegisterForm = () => {
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 className={formData.phone ? "active" : ""}
-                required // Add the required attribute
+                required
               />
 
               <label htmlFor="phone" onClick={handleLabelClick}>

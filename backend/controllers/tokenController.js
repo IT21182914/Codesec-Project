@@ -1,4 +1,3 @@
-//tokenController.js
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, REFRESH_TOKEN_SECRET } = process.env;
 

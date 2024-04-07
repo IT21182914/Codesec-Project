@@ -1,5 +1,3 @@
-//recipeController.js
-
 const Recipe = require("../models/recipeModel");
 
 // Function to get all recipes

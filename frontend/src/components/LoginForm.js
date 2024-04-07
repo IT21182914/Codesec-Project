@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import Axios for making HTTP requests
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate instead of useHistory
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authAction } from "../store";
 import "./LoginForm.css";
@@ -18,7 +18,7 @@ const LoginForm = () => {
   });
 
   const [successMessage, setSuccessMessage] = useState("");
-  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,9 +71,9 @@ const LoginForm = () => {
     try {
       const userData = await sendRequest(formData);
       dispatch(authAction.login());
-      console.log(userData); // Log the response data
-      setSuccessMessage("Login successful!"); // Set success message
-      navigate("/home"); // Navigate to Recipe component upon successful login
+      console.log(userData);
+      setSuccessMessage("Login successful!");
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }

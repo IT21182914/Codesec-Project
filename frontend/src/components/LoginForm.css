@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* Adjust the height as needed */
+  
 }
 
 .login-form {
@@ -12,7 +12,7 @@
     max-width: 400px;
     padding: 20px;
     background-color: #fff;
-    /* White background for the form */
+   
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -80,10 +80,10 @@ button.submit-button {
 .login-form input[type="password"],
 .login-form input[type="text"] {
     width: calc(90% - 1px);
-    /* Adjust the width as needed */
+  
 }
 
 input[type="submit"] {
     width: 100%;
-    /* Make the submit button full width */
+   
 }

@@ -1,4 +1,3 @@
-// RecipeCard.js
 import React from "react";
 import FavoriteButton from "./FavoriteButton";
 import "./styles.css";
