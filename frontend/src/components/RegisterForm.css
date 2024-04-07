@@ -107,3 +107,11 @@ button.submit-button {
     color: #ff5894;
     cursor: pointer;
 }
+
+.logo {
+    color: #ff5894;
+    font-size: 25px !important;
+    font-weight: bold;
+    text-align: center;
+    margin-left: -10px;
+}

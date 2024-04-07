@@ -87,3 +87,11 @@ input[type="submit"] {
     width: 100%;
    
 }
+
+.logo {
+    color: #ff5894;
+    font-size: 25px !important;
+    font-weight: bold;
+    text-align: center;
+    margin-left: -10px;
+}

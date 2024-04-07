@@ -87,6 +87,7 @@ const LoginForm = () => {
   return (
     <div className="login-form-container">
       <div className="login-form">
+        <div className="logo">Cook</div>
         <h2>Login</h2>
         {successMessage && <p className="success-message">{successMessage}</p>}
         <form onSubmit={handleSubmit}>

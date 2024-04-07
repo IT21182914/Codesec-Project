@@ -128,6 +128,7 @@ const RegisterForm = () => {
       <br /> <br />
       <br /> <br />
       <div className="register-form">
+        <div className="logo">Cook</div>
         <br />
         <h2>Register</h2>
         {successMessage && <p className="success-message">{successMessage}</p>}
