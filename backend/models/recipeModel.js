@@ -21,7 +21,6 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // Add any other fields as needed
 });
 
 const Recipe = mongoose.model("Recipe", recipeSchema);

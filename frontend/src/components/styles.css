@@ -1,0 +1,88 @@
+/* styles.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #ff5894;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.categories button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 2px solid #ff5894;
+    border-radius: 20px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.categories button.active {
+    background-color: #ff5894;
+    color: #fff;
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.recipe-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recipe-details {
+    padding: 10px;
+}
+
+.recipe-details h3 {
+    margin-bottom: 10px;
+}
+
+.favorite-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff5894;
+    color: #fff;
+    cursor: pointer;
+}
+
+.favorite-btn:hover {
+    background-color: #ff3399;
+}

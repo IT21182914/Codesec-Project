@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
     // Verify JWT token
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decodedToken.userId;
+    req.user = decodedToken;
 
     next();
   } catch (error) {
