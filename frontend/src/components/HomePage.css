@@ -1,68 +1,22 @@
 .success-message {
     position: fixed;
-    top: 50%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(33, 143, 35, 0.9);
+    background-color: #5dcd61;
     color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    animation: slideIn 1s ease-in-out, pulse 1s infinite alternate;
-}
-
-.success-message::before {
-    content: "\2714";
-    display: block;
-    text-align: center;
-    font-size: 50px;
-    color: #afcaaf;
-    margin-bottom: 10px;
-    animation: bounce 1s ease-in-out;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 20px;
+    animation: slideIn 1s ease-in-out;
 }
 
 @keyframes slideIn {
     0% {
-        transform: translate(-50%, -200%);
-        opacity: 0;
+        transform: translate(-50%, 200%);
     }
 
     100% {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1.05);
-    }
-}
-
-@keyframes bounce {
-    0% {
-        transform: translateY(-20px) scale(0.5);
-    }
-
-    50% {
-        transform: translateY(10px) scale(1.2);
-    }
-
-    100% {
-        transform: translateY(0) scale(1);
-    }
-}
-
-
-@media screen and (max-width: 768px) {
-    .success-message {
-        top: 50%;
-        left: 30%;
         transform: translate(-50%, -50%);
     }
 }
