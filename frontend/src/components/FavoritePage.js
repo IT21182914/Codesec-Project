@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import { Link, useLocation } from "react-router-dom";
+import logoutIcon from "../assets/logout.png";
 
 const FavoritePage = () => {
   const location = useLocation();
@@ -41,8 +42,29 @@ const FavoritePage = () => {
             FAVORITE
           </Link>
         </div>
+        <div
+          className="logout-button-container"
+          style={{ marginRight: "10px" }}
+        >
+          <Link
+            to="/"
+            className="logout-button"
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={logoutIcon}
+              alt="Logout"
+              style={{ width: "25px", marginRight: "5px" }}
+            />
+            <span style={{ fontSize: "18px" }}></span>
+          </Link>
+        </div>
       </div>
-      <h2
+      {/* <h2
         style={{
           textAlign: "center",
           fontSize: "24px",
@@ -53,8 +75,10 @@ const FavoritePage = () => {
           margin: "20px 0",
         }}
       >
-        Favorite Recipes HERE
-      </h2>
+        Favorite Recipes 💚{" "}
+      </h2> */}
+      <br />
+      <br />
 
       <div className="recipes">
         {favoriteRecipes.map((recipe) => (
