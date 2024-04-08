@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import { Link, useLocation } from "react-router-dom";
-import logoutIcon from "../assets/logout.png"; // Import the logout image
+import logoutIcon from "../assets/logout.png";
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -43,6 +43,15 @@ const HomePage = () => {
 
   const addToFavorites = (recipe) => {
     setFavoriteRecipes([...favoriteRecipes, recipe]);
+    // Send the recipe data to the backend
+    axios
+      .post("http://localhost:8080/api/recipes", recipe)
+      .then((response) => {
+        console.log("Recipe added to the database:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error adding recipe to the database:", error);
+      });
   };
 
   const removeFromFavorites = (recipe) => {
