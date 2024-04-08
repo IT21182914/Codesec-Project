@@ -1,24 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const recipeController = require("../controllers/recipeController");
-const authMiddleware = require("../middlewares/authMiddleware");
 
-// Apply authMiddleware to protect the routes below
-router.use(authMiddleware);
+// Route to fetch all recipes
+router.get("/recipes", recipeController.fetchRecipes);
 
-// Get all recipes
-router.get("/recipes", recipeController.getAllRecipes);
+// Route to create a new recipe
+router.post("/recipes", recipeController.createRecipe);
 
-// Add a new recipe
-router.post("/recipes", recipeController.addRecipe);
-
-// Add recipe to favorites
-router.post("/recipes/favorite", recipeController.addToFavorites);
-
-// Remove recipe from favorites
-router.delete(
-  "/recipes/favorite/:recipeId",
-  recipeController.removeFromFavorites
-);
+router.get("/favorite-recipes", recipeController.fetchFavoriteRecipes);
 
 module.exports = router;
