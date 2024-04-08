@@ -11,11 +11,19 @@ const fetchRecipes = async (req, res) => {
   }
 };
 
-// Controller to create a new recipe
 const createRecipe = async (req, res) => {
   try {
     // Extract recipe data from request body
     const { strMeal, strCategory, strMealThumb, strInstructions } = req.body;
+
+    // Check if the recipe already exists in the database
+    // const existingRecipe = await Recipe.findOne({ strMeal });
+    // if (existingRecipe) {
+    //   return res
+    //     .status(400)
+    //     .json({ success: false, message: "Recipe already exists." });
+    // }
+
     // Create a new recipe instance
     const newRecipe = new Recipe({
       strMeal,
@@ -23,6 +31,7 @@ const createRecipe = async (req, res) => {
       strMealThumb,
       strInstructions,
     });
+
     // Save the new recipe to the database
     const savedRecipe = await newRecipe.save();
     res.status(201).json({ success: true, recipe: savedRecipe });
