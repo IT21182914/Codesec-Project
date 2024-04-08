@@ -47,7 +47,7 @@ const HomePage = () => {
     setFavoriteRecipes([...favoriteRecipes, recipe]);
     // Send the recipe data to the backend
     axios
-      .post("http://localhost:8080/api/recipes", recipe)
+      .post("https://codesec-project.onrender.com/api/recipes", recipe)
       .then((response) => {
         console.log("Recipe added to the database:", response.data);
         setSuccessMessage("Recipe added to favorites!"); // Set success message

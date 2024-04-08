@@ -11,7 +11,7 @@ const FavoritePage = () => {
   useEffect(() => {
     // Fetch favorite recipes from the backend
     axios
-      .get("http://localhost:8080/api/recipes")
+      .get("https://codesec-project.onrender.com/api/recipes")
       .then((response) => {
         setFavoriteRecipes(response.data.recipes || []);
       })
@@ -27,7 +27,7 @@ const FavoritePage = () => {
     );
 
     axios
-      .delete(`http://localhost:8080/api/recipes/${id}`)
+      .delete(`https://codesec-project.onrender.com/api/recipes/${id}`)
       .then((response) => {
         console.log("Recipe removed from favorites:", response.data);
       })
