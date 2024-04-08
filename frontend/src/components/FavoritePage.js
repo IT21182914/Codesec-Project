@@ -20,27 +20,21 @@ const FavoritePage = () => {
       });
   }, []);
 
-  const removeFromFavorites = (recipeId) => {
-    // Extract the string ID from the recipeId object
-    const id = recipeId._id;
-
-    // Log the recipe ID to ensure it's a valid string
-    console.log("Recipe ID to be removed:", id);
-
-    // Remove the recipe from the frontend state
+  const removeFromFavorites = (recipe) => {
+    const id = recipe._id;
     setFavoriteRecipes(
-      favoriteRecipes.filter((recipe) => recipe.idMeal !== id)
+      favoriteRecipes.filter((favRecipe) => favRecipe._id !== id)
     );
 
-    // Send a request to delete the recipe from the backend
     axios
       .delete(`http://localhost:8080/api/recipes/${id}`)
       .then((response) => {
         console.log("Recipe removed from favorites:", response.data);
-        window.location.reload();
       })
       .catch((error) => {
         console.error("Error removing recipe from favorites:", error);
+        // If there's an error, revert the local state change
+        setFavoriteRecipes([...favoriteRecipes, recipe]);
       });
   };
 
