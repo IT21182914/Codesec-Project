@@ -20,6 +20,30 @@ const FavoritePage = () => {
       });
   }, []);
 
+  const removeFromFavorites = (recipeId) => {
+    // Extract the string ID from the recipeId object
+    const id = recipeId._id;
+
+    // Log the recipe ID to ensure it's a valid string
+    console.log("Recipe ID to be removed:", id);
+
+    // Remove the recipe from the frontend state
+    setFavoriteRecipes(
+      favoriteRecipes.filter((recipe) => recipe.idMeal !== id)
+    );
+
+    // Send a request to delete the recipe from the backend
+    axios
+      .delete(`http://localhost:8080/api/recipes/${id}`)
+      .then((response) => {
+        console.log("Recipe removed from favorites:", response.data);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.error("Error removing recipe from favorites:", error);
+      });
+  };
+
   return (
     <div className="container">
       <div className="header">
@@ -64,25 +88,16 @@ const FavoritePage = () => {
           </Link>
         </div>
       </div>
-      {/* <h2
-        style={{
-          textAlign: "center",
-          fontSize: "24px",
-          fontWeight: "bold",
-          color: "#ff5894",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          margin: "20px 0",
-        }}
-      >
-        Favorite Recipes 💚{" "}
-      </h2> */}
       <br />
       <br />
-
       <div className="recipes">
         {favoriteRecipes.map((recipe) => (
-          <RecipeCard key={recipe.idMeal} recipe={recipe} isFavorite={true} />
+          <RecipeCard
+            key={recipe.idMeal}
+            recipe={recipe}
+            removeFromFavorites={removeFromFavorites} // Pass the remove function to RecipeCard
+            isFavorite={true}
+          />
         ))}
       </div>
     </div>

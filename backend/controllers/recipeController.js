@@ -11,6 +11,17 @@ const fetchRecipes = async (req, res) => {
   }
 };
 
+const deleteRecipe = async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Delete the recipe from the database
+    await Recipe.findByIdAndDelete(id);
+    res.json({ success: true, message: "Recipe deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 const createRecipe = async (req, res) => {
   try {
     // Extract recipe data from request body
@@ -56,4 +67,5 @@ module.exports = {
   fetchRecipes,
   createRecipe,
   fetchFavoriteRecipes,
+  deleteRecipe,
 };
