@@ -12,7 +12,7 @@ const FavoritePage = () => {
     axios
       .get("http://localhost:8080/api/recipes")
       .then((response) => {
-        setFavoriteRecipes(response.data.recipes || []); // Ensure recipes array is set even if response is undefined
+        setFavoriteRecipes(response.data.recipes || []);
       })
       .catch((error) => {
         console.error("Error fetching favorite recipes:", error);
