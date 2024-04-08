@@ -1,9 +1,9 @@
 .success-message {
     position: fixed;
-    top: 20%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #5dcd61;
+    background-color: #ff5894;
     color: white;
     padding: 15px;
     border-radius: 10px;
