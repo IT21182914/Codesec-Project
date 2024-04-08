@@ -1,9 +1,23 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import RecipeCard from "./RecipeCard";
+import { Link, useLocation } from "react-router-dom";
 
-const FavoritePage = ({ favoriteRecipes }) => {
+const FavoritePage = () => {
   const location = useLocation();
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
+  useEffect(() => {
+    // Fetch favorite recipes from the backend
+    axios
+      .get("http://localhost:8080/api/recipes")
+      .then((response) => {
+        setFavoriteRecipes(response.data.recipes || []); // Ensure recipes array is set even if response is undefined
+      })
+      .catch((error) => {
+        console.error("Error fetching favorite recipes:", error);
+      });
+  }, []);
 
   return (
     <div className="container">
@@ -43,7 +57,7 @@ const FavoritePage = ({ favoriteRecipes }) => {
       </h2>
 
       <div className="recipes">
-        {favoriteRecipes?.map((recipe) => (
+        {favoriteRecipes.map((recipe) => (
           <RecipeCard key={recipe.idMeal} recipe={recipe} isFavorite={true} />
         ))}
       </div>

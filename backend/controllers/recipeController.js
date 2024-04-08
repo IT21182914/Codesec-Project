@@ -31,7 +31,20 @@ const createRecipe = async (req, res) => {
   }
 };
 
+// Controller to fetch favorite recipes
+const fetchFavoriteRecipes = async (req, res) => {
+  try {
+    // Fetch favorite recipes from the database
+    // Assuming there's a field to mark recipes as favorites in the database
+    const favoriteRecipes = await Recipe.find({ isFavorite: true });
+    res.json({ success: true, favoriteRecipes });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   fetchRecipes,
   createRecipe,
+  fetchFavoriteRecipes,
 };

@@ -118,17 +118,18 @@ const HomePage = () => {
         ))}
       </div>
       <div className="recipes">
-        {recipes.map((recipe) => (
-          <RecipeCard
-            key={recipe.idMeal}
-            recipe={recipe}
-            addToFavorites={addToFavorites}
-            removeFromFavorites={removeFromFavorites}
-            isFavorite={favoriteRecipes.some(
-              (favRecipe) => favRecipe.idMeal === recipe.idMeal
-            )}
-          />
-        ))}
+        {recipes &&
+          recipes.map((recipe) => (
+            <RecipeCard
+              key={recipe.idMeal}
+              recipe={recipe}
+              addToFavorites={addToFavorites}
+              removeFromFavorites={removeFromFavorites}
+              isFavorite={favoriteRecipes.some(
+                (favRecipe) => favRecipe.idMeal === recipe.idMeal
+              )}
+            />
+          ))}
       </div>
     </div>
   );
