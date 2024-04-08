@@ -3,12 +3,14 @@ import axios from "axios";
 import RecipeCard from "./RecipeCard";
 import { Link, useLocation } from "react-router-dom";
 import logoutIcon from "../assets/logout.png";
+import "./HomePage.css"; // Import CSS file for HomePage styling
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
 
   useEffect(() => {
@@ -42,12 +44,19 @@ const HomePage = () => {
   };
 
   const addToFavorites = (recipe) => {
+    // Remove the idMeal field from the recipe object
+    const { idMeal, ...recipeData } = recipe;
+
     setFavoriteRecipes([...favoriteRecipes, recipe]);
     // Send the recipe data to the backend
     axios
-      .post("http://localhost:8080/api/recipes", recipe)
+      .post("https://codesec-project.onrender.com/api/recipes", recipeData)
       .then((response) => {
         console.log("Recipe added to the database:", response.data);
+        setSuccessMessage("Recipe added to favorites!"); // Set success message
+        setTimeout(() => {
+          setSuccessMessage(""); // Clear success message after 3 seconds
+        }, 3000);
       })
       .catch((error) => {
         console.error("Error adding recipe to the database:", error);
@@ -104,6 +113,9 @@ const HomePage = () => {
           </Link>
         </div>
       </div>
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
       <div className="categories">
         {categories.map((category) => (
           <button

@@ -10,4 +10,6 @@ router.post("/recipes", recipeController.createRecipe);
 
 router.get("/favorite-recipes", recipeController.fetchFavoriteRecipes);
 
+router.delete("/recipes/:id", recipeController.deleteRecipe);
+
 module.exports = router;

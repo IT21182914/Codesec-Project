@@ -11,11 +11,30 @@ const fetchRecipes = async (req, res) => {
   }
 };
 
-// Controller to create a new recipe
+const deleteRecipe = async (req, res) => {
+  try {
+    const { id } = req.params;
+    // Delete the recipe from the database
+    await Recipe.findByIdAndDelete(id);
+    res.json({ success: true, message: "Recipe deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 const createRecipe = async (req, res) => {
   try {
     // Extract recipe data from request body
     const { strMeal, strCategory, strMealThumb, strInstructions } = req.body;
+
+    // Check if the recipe already exists in the database
+    // const existingRecipe = await Recipe.findOne({ strMeal });
+    // if (existingRecipe) {
+    //   return res
+    //     .status(400)
+    //     .json({ success: false, message: "Recipe already exists." });
+    // }
+
     // Create a new recipe instance
     const newRecipe = new Recipe({
       strMeal,
@@ -23,6 +42,7 @@ const createRecipe = async (req, res) => {
       strMealThumb,
       strInstructions,
     });
+
     // Save the new recipe to the database
     const savedRecipe = await newRecipe.save();
     res.status(201).json({ success: true, recipe: savedRecipe });
@@ -47,4 +67,5 @@ module.exports = {
   fetchRecipes,
   createRecipe,
   fetchFavoriteRecipes,
+  deleteRecipe,
 };

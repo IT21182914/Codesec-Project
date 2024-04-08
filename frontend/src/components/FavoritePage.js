@@ -11,7 +11,7 @@ const FavoritePage = () => {
   useEffect(() => {
     // Fetch favorite recipes from the backend
     axios
-      .get("http://localhost:8080/api/recipes")
+      .get("https://codesec-project.onrender.com/api/recipes")
       .then((response) => {
         setFavoriteRecipes(response.data.recipes || []);
       })
@@ -19,6 +19,24 @@ const FavoritePage = () => {
         console.error("Error fetching favorite recipes:", error);
       });
   }, []);
+
+  const removeFromFavorites = (recipe) => {
+    const id = recipe._id;
+    setFavoriteRecipes(
+      favoriteRecipes.filter((favRecipe) => favRecipe._id !== id)
+    );
+
+    axios
+      .delete(`https://codesec-project.onrender.com/api/recipes/${id}`)
+      .then((response) => {
+        console.log("Recipe removed from favorites:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error removing recipe from favorites:", error);
+        // If there's an error, revert the local state change
+        setFavoriteRecipes([...favoriteRecipes, recipe]);
+      });
+  };
 
   return (
     <div className="container">
@@ -64,25 +82,16 @@ const FavoritePage = () => {
           </Link>
         </div>
       </div>
-      {/* <h2
-        style={{
-          textAlign: "center",
-          fontSize: "24px",
-          fontWeight: "bold",
-          color: "#ff5894",
-          textTransform: "uppercase",
-          letterSpacing: "1px",
-          margin: "20px 0",
-        }}
-      >
-        Favorite Recipes 💚{" "}
-      </h2> */}
       <br />
       <br />
-
       <div className="recipes">
         {favoriteRecipes.map((recipe) => (
-          <RecipeCard key={recipe.idMeal} recipe={recipe} isFavorite={true} />
+          <RecipeCard
+            key={recipe.idMeal}
+            recipe={recipe}
+            removeFromFavorites={removeFromFavorites} // Pass the remove function to RecipeCard
+            isFavorite={true}
+          />
         ))}
       </div>
     </div>
