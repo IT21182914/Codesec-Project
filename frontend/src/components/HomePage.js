@@ -44,10 +44,13 @@ const HomePage = () => {
   };
 
   const addToFavorites = (recipe) => {
+    // Remove the idMeal field from the recipe object
+    const { idMeal, ...recipeData } = recipe;
+
     setFavoriteRecipes([...favoriteRecipes, recipe]);
     // Send the recipe data to the backend
     axios
-      .post("https://codesec-project.onrender.com/api/recipes", recipe)
+      .post("https://codesec-project.onrender.com/api/recipes", recipeData)
       .then((response) => {
         console.log("Recipe added to the database:", response.data);
         setSuccessMessage("Recipe added to favorites!"); // Set success message
