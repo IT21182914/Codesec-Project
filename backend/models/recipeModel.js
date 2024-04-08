@@ -6,6 +6,10 @@ const recipeSchema = new mongoose.Schema({
   strCategory: String,
   strMealThumb: String,
   strInstructions: String,
+  addedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 // Define model
